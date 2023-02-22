@@ -1,3 +1,4 @@
 # Fdipardy-Magdeburg
 
 instruct
+testMergeConflict
