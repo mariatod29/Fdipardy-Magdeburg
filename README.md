@@ -34,6 +34,28 @@ To make it easy for you to get started with GitHub, here is a link with informat
   - Creating a remote (assign a short name for remote Git URL: `git remote add [remote name] [remote url]`
   - Pushing to a remote (send changes to the remote repository): `git push [remote name] [local name]`
 
+## Frontend Onboarding
+Get to know the basics in Frontend Development with the following crash courses:
+- HTML Crash Course: https://www.youtube.com/watch?v=UB1O30fR-EE 
+- CSS Crash Course: https://www.youtube.com/watch?v=yfoY53QXEnI 
+- JavaScript Crash Course: https://www.youtube.com/watch?v=hdI2bqOjy3c 
+- Responsive Web Design: https://www.youtube.com/watch?v=srvUrASNj0s 
+
+To practice your skills:
+- HTML: 
+    - https://www.codecademy.com/learn/learn-html 
+
+- CSS:
+    - https://www.codecademy.com/learn/learn-css
+    - https://www.codecademy.com/learn/learn-css-introduction
+    - https://www.codecademy.com/learn/learn-css-flexbox-and-grid
+    - https://www.codecademy.com/learn/learn-intermediate-css
+
+- JavaScript:
+    - https://www.codecademy.com/learn/introduction-to-javascript
+    - https://www.codecademy.com/learn/learn-intermediate-javascript
+    - https://www.codecademy.com/learn/build-interactive-websites
+
 ## Editing this README
 This is just a starting point, so if you have any suggestions how to make this README better, or you want to add some information, feel free to do it.
 
