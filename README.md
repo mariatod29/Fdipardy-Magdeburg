@@ -56,22 +56,19 @@ To practice your skills:
     - https://www.codecademy.com/learn/learn-intermediate-javascript
     - https://www.codecademy.com/learn/build-interactive-websites
 
+## Backend Onboarding
+Get to know the basics in Backend Development on the following links:
+- Java book "Въведение в програмирането с Java", Svetlin Nakov: https://introprogramming.info/intro-java-book/
+- Spring Boot Tutorial: https://www.javatpoint.com/spring-boot-tutorial
+- Thymeleaf - Introduction to Using Thymeleaf in Spring: https://www.baeldung.com/thymeleaf-in-spring-mvc
+
+To practice your skills:
+- Java:
+  - Basics: https://www.codecademy.com/learn/learn-java
+  - Intermediate: https://www.codecademy.com/learn/learn-intermediate-java
+
+- Spring
+  - Simple Rest-Application with Spring Boot: https://www.youtube.com/watch?v=9SGDpanrc8U&ab_channel=Amigoscode
+
 ## Editing this README
 This is just a starting point, so if you have any suggestions how to make this README better, or you want to add some information, feel free to do it.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
