@@ -17,6 +17,9 @@ You need to install the following tools, if you wish to run this project:
 2. Java 17
    1. You can download Java 17 on this link: https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html
 3. Maven
+   - Information how to install Maven:
+     1. Set JAVA_HOME Environment Variable: https://www.youtube.com/watch?v=bUnUtt-fe3s&ab_channel=OSTechHelp
+     2. How to install Apache Maven on Windows 10: https://www.youtube.com/watch?v=km3tLti4TCM&ab_channel=AmitThinks
 4. Git client (e.g.: git,Git Bash, TortoiseGit or GitHub Desktop)
    1. git,Git Bash - Console-based Git client -> download on the following URL: https://git-scm.com/downloads
    2. TortoiseGit - Windows GUI client -> download on the following URL: https://tortoisegit.org/download/
