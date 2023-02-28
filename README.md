@@ -56,6 +56,9 @@ To practice your skills:
   - https://www.codecademy.com/learn/learn-intermediate-javascript
   - https://www.codecademy.com/learn/build-interactive-websites
 
+- React:
+  - https://www.codecademy.com/learn/react-101
+
 ## Backend Onboarding
 Get to know the basics in Backend Development on the following links:
 - Java book "Въведение в програмирането с Java", Svetlin Nakov: https://introprogramming.info/intro-java-book/
