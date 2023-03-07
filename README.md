@@ -2,10 +2,7 @@
 
 ## Built With
 Technologies used in the project:
-- Java using Spring
-- HTML
-- CSS
-- JavaScript
+- Python using Tkinter
 - Firestore - noSQL Database
    - more information about Firestore you can find here: https://www.youtube.com/watch?v=v_hR4K4auoQ&list=PLl-K7zZEsYLluG5MCVEzXAQ7ACZBCuZgZ&ab_channel=Firebase
 
@@ -13,11 +10,8 @@ Technologies used in the project:
 ## Pre-run requirements
 You need to install the following tools, if you wish to run this project:
 
-1. IntelliJ IDEA
-2. Java 17
-  1. You can download Java 17 on this link: https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html
-3. Maven
-4. Git client (e.g.: git,Git Bash, TortoiseGit or GitHub Desktop)
+1. PyCharm or other integrated development environment for Python
+2. Git client (e.g.: git,Git Bash, TortoiseGit or GitHub Desktop)
    1. git,Git Bash - Console-based Git client -> download on the following URL: https://git-scm.com/downloads
    2. TortoiseGit - Windows GUI client -> download on the following URL: https://tortoisegit.org/download/
    3. GitHub Desktop - Desktop client -> download on the following URL: https://desktop.github.com/
@@ -34,32 +28,7 @@ To make it easy for you to get started with GitHub, here is a link with informat
   - Creating a remote (assign a short name for remote Git URL: `git remote add [remote name] [remote url]`
   - Pushing to a remote (send changes to the remote repository): `git push [remote name] [local name]`
 
-## Frontend Onboarding
-Get to know the basics in Frontend Development with the following crash courses:
-- HTML Crash Course: https://www.youtube.com/watch?v=UB1O30fR-EE
-- CSS Crash Course: https://www.youtube.com/watch?v=yfoY53QXEnI
-- JavaScript Crash Course: https://www.youtube.com/watch?v=hdI2bqOjy3c
-- Responsive Web Design: https://www.youtube.com/watch?v=srvUrASNj0s
-
-To practice your skills:
-- HTML:
-  - https://www.codecademy.com/learn/learn-html
-
-- CSS:
-  - https://www.codecademy.com/learn/learn-css
-  - https://www.codecademy.com/learn/learn-css-introduction
-  - https://www.codecademy.com/learn/learn-css-flexbox-and-grid
-  - https://www.codecademy.com/learn/learn-intermediate-css
-
-- JavaScript:
-  - https://www.codecademy.com/learn/introduction-to-javascript
-  - https://www.codecademy.com/learn/learn-intermediate-javascript
-  - https://www.codecademy.com/learn/build-interactive-websites
-
-- React:
-  - https://www.codecademy.com/learn/react-101
-
-## Backend Onboarding
+## Onboarding
 Get to know the basics in Backend Development on the following links:
 - Java book "Въведение в програмирането с Java", Svetlin Nakov: https://introprogramming.info/intro-java-book/
 - Spring Boot Tutorial: https://www.javatpoint.com/spring-boot-tutorial
@@ -67,11 +36,13 @@ Get to know the basics in Backend Development on the following links:
 
 To practice your skills:
 - Java:
-  - Basics: https://www.codecademy.com/learn/learn-java
-  - Intermediate: https://www.codecademy.com/learn/learn-intermediate-java
+  - Basics: https://www.w3schools.com/python/
+  - Intermediate: https://try.codecademy.com/learn-python-3?g_network=g&g_productchannel=&g_adid=624888212541&g_locinterest=&g_keyword=intermediate%20python&g_acctid=243-039-7011&g_adtype=&g_keywordid=kwd-514049733987&g_ifcreative=&g_campaign=account&g_locphysical=1001448&g_adgroupid=104765209662&g_productid=&g_source={sourceid}&g_merchantid=&g_placement=&g_partition=&g_campaignid=10947274266&g_ifproduct=&utm_id=t_kwd-514049733987:ag_104765209662:cp_10947274266:n_g:d_c&utm_source=google&utm_medium=paid-search&utm_term=intermediate%20python&utm_campaign=ROW_Language:_Basic_-_Broad&utm_content=624888212541&g_adtype=search&g_acctid=243-039-7011&gclid=CjwKCAiA3pugBhAwEiwAWFzwde4Weu1FoA-2hvacqFyED4IE6sD5M1dTfn8pAuTjRjcetnfUnChlqhoCHEkQAvD_BwE
 
-- Spring
-  - Simple Rest-Application with Spring Boot: https://www.youtube.com/watch?v=9SGDpanrc8U&ab_channel=Amigoscode
+
+- Tkinter (Graphical User interfaces)
+  - https://docs.python.org/3/library/tkinter.html
+  - https://www.google.com/search?q=tkinter+for+beginners&sxsrf=AJOqlzW6NhAgC-HXQZFX7GMQ6dRk2WsFBQ%3A1678209255267&ei=53AHZLHxD6CQxc8PkoKfqAQ&oq=tkinter+for+begi&gs_lcp=Cgxnd3Mtd2l6LXNlcnAQAxgAMgUIABCABDIGCAAQFhAeMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgUIABCGAzIFCAAQhgMyBQgAEIYDMgUIABCGAzIFCAAQhgM6CggAEEcQ1gQQsAM6BAgjECc6BAgAEEM6CwguEIAEEMcBENEDOggIABCABBDLAToFCAAQkQI6CggAEIAEEBQQhwJKBAhBGABQwgdY8CNg9itoA3ABeACAAXyIAc0NkgEEMy4xM5gBAKABAcgBCMABAQ&sclient=gws-wiz-serp#fpstate=ive&vld=cid:b5a00b65,vid:YXPyB4XeYLA
 
 ## Editing this README
 This is just a starting point, so if you have any suggestions how to make this README better, or you want to add some information, feel free to do it.
