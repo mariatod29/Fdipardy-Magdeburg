@@ -40,7 +40,7 @@ To practice your skills:
   - Intermediate: https://try.codecademy.com/learn-python-3?g_network=g&g_productchannel=&g_adid=624888212541&g_locinterest=&g_keyword=intermediate%20python&g_acctid=243-039-7011&g_adtype=&g_keywordid=kwd-514049733987&g_ifcreative=&g_campaign=account&g_locphysical=1001448&g_adgroupid=104765209662&g_productid=&g_source={sourceid}&g_merchantid=&g_placement=&g_partition=&g_campaignid=10947274266&g_ifproduct=&utm_id=t_kwd-514049733987:ag_104765209662:cp_10947274266:n_g:d_c&utm_source=google&utm_medium=paid-search&utm_term=intermediate%20python&utm_campaign=ROW_Language:_Basic_-_Broad&utm_content=624888212541&g_adtype=search&g_acctid=243-039-7011&gclid=CjwKCAiA3pugBhAwEiwAWFzwde4Weu1FoA-2hvacqFyED4IE6sD5M1dTfn8pAuTjRjcetnfUnChlqhoCHEkQAvD_BwE
 
 
-- Tkinter (Graphical User interfaces)
+- Tkinter (Graphical User interfaces):
   - https://docs.python.org/3/library/tkinter.html
   - https://www.google.com/search?q=tkinter+for+beginners&sxsrf=AJOqlzW6NhAgC-HXQZFX7GMQ6dRk2WsFBQ%3A1678209255267&ei=53AHZLHxD6CQxc8PkoKfqAQ&oq=tkinter+for+begi&gs_lcp=Cgxnd3Mtd2l6LXNlcnAQAxgAMgUIABCABDIGCAAQFhAeMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgUIABCGAzIFCAAQhgMyBQgAEIYDMgUIABCGAzIFCAAQhgM6CggAEEcQ1gQQsAM6BAgjECc6BAgAEEM6CwguEIAEEMcBENEDOggIABCABBDLAToFCAAQkQI6CggAEIAEEBQQhwJKBAhBGABQwgdY8CNg9itoA3ABeACAAXyIAc0NkgEEMy4xM5gBAKABAcgBCMABAQ&sclient=gws-wiz-serp#fpstate=ive&vld=cid:b5a00b65,vid:YXPyB4XeYLA
 
