@@ -3,15 +3,15 @@ from tkinter import *
 root = Tk()
 root.title("Fdipardy")
 root.configure(background='white')
-root.geometry("1500x750+100+0")
+root.geometry("1435x650+100+0")
 
 frame = Frame(root)
 frame.grid()
 
-class Fdipardy():
-
-    def points(self):
-        self.total = 0
+#display
+txtDisplay = Entry(frame, font=('arial',20,'bold'), bg="white", bd=10, width=94, justify=CENTER)
+txtDisplay.grid(row=0, column=0, columnspan=5, pady=1)
+txtDisplay.insert(0,"Welcome to Fdipardy")
 
 # row 1-----------------------------------------------------------------------------------------------------------------------------------
 btnSerien = Button(frame, text="Serien", width=20, height=3, font=('arial', 20, 'bold'), bd=4, bg="white").grid(row=1, column=0, pady=25)
