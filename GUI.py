@@ -22,7 +22,7 @@ def start_gui():
         new.title("Question")
         Label(new, text="Question / Answer", font='Mistral 18 bold').place(x=150, y=80)
 
-    txtDisplay = Label(frame, text="Welcome to Fdipardy", font=('Mistral 25 bold '), bg="white", bd=10, width=94,
+    txtDisplay = Label(frame, text="Welcome to Fdipardy", font=('Mistral 25 bold '), bg="white", bd=10, width=82,
                        justify=CENTER)
     txtDisplay.grid(row=0, column=0, columnspan=5, pady=1)
 
