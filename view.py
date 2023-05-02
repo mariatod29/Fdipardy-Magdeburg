@@ -48,7 +48,8 @@ class View:
     def create_button(self, category, score):
         button = Button(self.frame, text=score + "$", width=20, height=2, font='Arial 25 bold', bd=4, fg="yellow",
                         bg="purple", activeforeground="yellow", activebackground="white")
-        command = lambda: self.on_click(category, score)
+        button.clicked = False  # add a clicked attribute to the button object
+        command = lambda: self.on_click(button, category, score)
         button.config(command=command)
         return button
 
@@ -68,39 +69,42 @@ class View:
                     self.column = 0
                     self.row += 1
 
-    def on_click(self, category, score):
-        new = Toplevel(self.root)
-        new.geometry("1660x680")
+    def on_click(self, button, category, score):
+        if not button.clicked:
+            button.clicked = True
+            button.config(state='disabled')  # disable the button
+            new = Toplevel(self.root)
+            new.geometry("1660x680")
 
-        questions_answers = self.controller.get_questions_and_answers(category, score, user_score=self.user_score)
-        question = questions_answers["question"]
-        answers = [questions_answers["a"], questions_answers["b"], questions_answers["c"]]
+            questions_answers = self.controller.get_questions_and_answers(category, score, user_score=self.user_score)
+            question = questions_answers["question"]
+            answers = [questions_answers["a"], questions_answers["b"], questions_answers["c"]]
 
-        correct_answer = None
-        if questions_answers["ac"] == True:
-            correct_answer = questions_answers["a"]
-        elif questions_answers["bc"] == True:
-            correct_answer = questions_answers["b"]
-        elif questions_answers["cc"] == True:
-            correct_answer = questions_answers["c"]
+            correct_answer = None
+            if questions_answers["ac"] == True:
+                correct_answer = questions_answers["a"]
+            elif questions_answers["bc"] == True:
+                correct_answer = questions_answers["b"]
+            elif questions_answers["cc"] == True:
+                correct_answer = questions_answers["c"]
 
-        question_score = questions_answers["score"]
+            question_score = questions_answers["score"]
 
-        label = Label(new, text=question, width=90, height=3, font='Arial 20 bold', bd=4, bg='white')
-        label.pack(side="top", pady=50, padx=20, anchor="center")
-        self.labels.append(label)
+            label = Label(new, text=question, width=90, height=3, font='Arial 20 bold', bd=4, bg='white')
+            label.pack(side="top", pady=50, padx=20, anchor="center")
+            self.labels.append(label)
 
-        button_frame = Frame(new)
-        button_frame.pack(side="top", pady=20)
+            button_frame = Frame(new)
+            button_frame.pack(side="top", pady=20)
 
-        for i, ans in enumerate(answers):
-            button = Button(button_frame, text=ans, width=40, height=2, font='Arial 15 bold', bd=4, fg='yellow',
-                            bg='purple',
-                            activeforeground='yellow', activebackground='white',
-                            command=lambda selected_answer=ans: self.check_answer(selected_answer, correct_answer,
-                                                                                  question_score, self.user_score))
-            button.grid(row=0, column=i, padx=10)
-            self.buttons.append(button)
+            for i, ans in enumerate(answers):
+                button = Button(button_frame, text=ans, width=40, height=2, font='Arial 15 bold', bd=4, fg='yellow',
+                                bg='purple',
+                                activeforeground='yellow', activebackground='white',
+                                command=lambda selected_answer=ans: self.check_answer(selected_answer, correct_answer,
+                                                                                      question_score, self.user_score))
+                button.grid(row=0, column=i, padx=10)
+                self.buttons.append(button)
 
     def check_answer(self, selected_answer, correct_answer, question_score, user_score):
         if selected_answer == correct_answer:
