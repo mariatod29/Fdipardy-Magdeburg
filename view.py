@@ -1,42 +1,10 @@
 from tkinter import *
-from firebaseConfig import db
 from tkinter import messagebox
 
 
-def get_questions_and_answers(category, score):
-    doc_ref = db.collection(f"{category}").document(f"qu{score}")
-    doc = doc_ref.get()
-
-    if doc.exists:
-        question_data = doc.to_dict()
-        question_text = question_data.get('text')
-        question_score = question_data.get('score')
-
-        answers = [
-            {
-                'text': answer_data['text'],
-                'correct': answer_data.get('correct')  # set default to False if key not found
-            }
-            for answer_data in question_data.get('answers', {}).values()
-        ]
-
-        questions_answers = {
-            'question': question_text,
-            'a': answers[0]['text'],
-            'b': answers[1]['text'],
-            'c': answers[2]['text'],
-            'score': question_score,
-            'ac': answers[0]['correct'],
-            'bc': answers[1]['correct'],
-            'cc': answers[2]['correct']
-        }
-        return questions_answers
-    # Return a default value or raise an error if there is no valid question data
-    return {'question': 'No question found', 'answers': []}
-
-
-class GUI:
-    def __init__(self):
+class View:
+    def __init__(self, controller):
+        self.controller = controller
         self.root = Tk()
         self.root.title("Fdipardy")
         self.root.configure(background='white')
@@ -102,16 +70,17 @@ class GUI:
         new = Toplevel(self.root)
         new.geometry("1660x680")
 
-        questions_answers = get_questions_and_answers(category, score)
+        questions_answers = self.controller.get_questions_and_answers(category, score)
         question = questions_answers["question"]
         answers = [questions_answers["a"], questions_answers["b"], questions_answers["c"]]
-        right_answer = None
+
+        correct_answer = None
         if questions_answers["ac"] == True:
-            right_answer = questions_answers["a"]
+            correct_answer = questions_answers["a"]
         elif questions_answers["bc"] == True:
-            right_answer = questions_answers["b"]
+            correct_answer = questions_answers["b"]
         elif questions_answers["cc"] == True:
-            right_answer = questions_answers["c"]
+            correct_answer = questions_answers["c"]
 
         question_score = questions_answers["score"]
 
@@ -126,16 +95,13 @@ class GUI:
             button = Button(button_frame, text=ans, width=40, height=2, font='Arial 15 bold', bd=4, fg='yellow',
                             bg='purple',
                             activeforeground='yellow', activebackground='white',
-                            command=lambda chosen_answer=ans: self.check_answer(chosen_answer, right_answer,
+                            command=lambda selected_answer=ans: self.check_answer(selected_answer, correct_answer,
                                                                                 question_score))
             button.grid(row=0, column=i, padx=10)
             self.buttons.append(button)
 
-
-    def check_answer(self, chosen_answer, right_answer, question_score):
-        if chosen_answer == right_answer:
-            # Give the user the question_score points
-            result= f"Correct! You earned {question_score} points"
+    def check_answer(self, selected_answer, correct_answer, question_score):
+        if selected_answer == correct_answer:
+            messagebox.showinfo("Correct answer", f"Correct! You won {question_score} points!")
         else:
-            result= "Incorrect! Good Luck Next Time"
-        messagebox.showinfo(title='Answer', message=f'{result}!')
+            messagebox.showerror("Incorrect answer", "Incorrect! Better luck next time!")
