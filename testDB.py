@@ -20,16 +20,3 @@ if doc.exists:
     print(question_text)
     for i, answer in enumerate(answers):
         print(f"{i + 1}. {answer['text']}")
-
-    # Get user input
-    user_answer = input("Enter the number of the correct answer: ")
-    if user_answer.isdigit() and 1 <= int(user_answer) <= len(answers):
-        selected_answer = answers[int(user_answer) - 1]
-        if selected_answer['correct']:
-            print("Congratulations! Your answer is correct.")
-        else:
-            print("Sorry, your answer is incorrect.")
-    else:
-        print(f"Invalid input. Please enter a number between 1 and {len(answers)}")
-else:
-    print(f"No document found with score {score}")
