@@ -1,4 +1,4 @@
-from firebaseConfig import db
+from model import db
 
 category = 'nahrung'
 score = 20
