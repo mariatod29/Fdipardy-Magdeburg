@@ -1,8 +1,12 @@
 from tkinter import *
 from tkinter import messagebox
 
+from model import Model
+
+
 class View:
     def __init__(self, controller):
+
         self.controller = controller
         self.root = Tk()
         self.root.title("Fdipardy")
@@ -13,6 +17,8 @@ class View:
 
         # Initialize user score to 0
         self.user_score = 0
+        self.user_id = "player1"  # initialize the user_id attribute
+
 
         self.frame = Frame(self.root)
         self.frame.pack(fill="both", expand=True)
@@ -112,3 +118,7 @@ class View:
             messagebox.showinfo("Correct answer", f"Correct! You won {question_score} points! You now have {self.user_score}!")
         else:
             messagebox.showerror("Incorrect answer", "Incorrect! Better luck next time!")
+
+        # Save the user score in the database
+        model = Model()
+        model.update_user_score(self.user_id, self.user_score)
