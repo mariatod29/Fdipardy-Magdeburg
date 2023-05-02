@@ -83,7 +83,9 @@ class GUI:
                 button.grid(row=self.row, column=self.column, pady=1, sticky="nsew")
                 self.buttons.append(button)
                 self.column += 1
+
                 max_columns = 3
+
                 if self.column > max_columns:
                     self.column = 0
                     self.row += 1
