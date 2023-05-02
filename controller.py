@@ -2,7 +2,6 @@ import tkinter as tk
 from model import Model
 from view import View
 
-
 class Controller(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
