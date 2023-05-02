@@ -136,8 +136,6 @@ class GUI:
         if chosen_answer == right_answer:
             # Give the user the question_score points
             result= f"Correct! You earned {question_score} points"
-            print(f"Correct! You earned {question_score} points.")
         else:
-            result= "Incorrect! You earned 0 points"
-            print("Incorrect!")
+            result= "Incorrect! Good Luck Next Time"
         messagebox.showinfo(title='Answer', message=f'{result}!')
