@@ -1,5 +1,6 @@
 from tkinter import *
 from firebaseConfig import db
+from tkinter import messagebox
 
 
 def get_questions_and_answers(category, score):
@@ -173,6 +174,9 @@ class GUI:
     def check_answer(self, chosen_answer, right_answer, question_score):
         if chosen_answer == right_answer:
             # Give the user the question_score points
+            result= "Correct"
             print(f"Correct! You earned {question_score} points.")
         else:
+            result= "Incorrect"
             print("Incorrect.")
+        messagebox.showinfo(title='Answer', message=f'{result}!')
