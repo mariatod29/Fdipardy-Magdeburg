@@ -1,22 +1,24 @@
-from model import db
+import unittest
+from unittest.mock import MagicMock
+from view import View
 
-category = 'nahrung'
-score = 20
+class TestView(unittest.TestCase):
 
-doc_ref = db.collection(category).document(f"qu{score}")
-doc = doc_ref.get()
+    def setUp(self):
+        self.controller_mock = MagicMock()
+        self.view = View(self.controller_mock)
 
-if doc.exists:
-    question_data = doc.to_dict()
-    question_text = question_data.get('text')
-    answers = [
-        {
-            'text': ans_data['text'],
-            'correct': ans_data.get('correct', False) #set default to False if key not found
-        }
-        for ans_data in question_data.get('answers', {}).values()
-    ]
+    def test_create_button(self):
+        button = self.view.create_button("test_category", "50")
+        self.assertEqual(button.cget("text"), "50$")
+        self.assertEqual(button.cget("bg"), "purple")
+        self.assertEqual(button.cget("fg"), "yellow")
+    def test_check_answer(self):
+        self.view.user_score = 0
+        self.view.check_answer("Würzig", "Würzig", 100, self.view.user_score)
+        self.assertEqual(self.view.user_score, 100)
+        self.view.check_answer("False", "Würzig", 100, self.view.user_score)
+        self.assertEqual(self.view.user_score, 100)
 
-    print(question_text)
-    for i, answer in enumerate(answers):
-        print(f"{i + 1}. {answer['text']}")
+if __name__ == '__main__':
+    unittest.main()
