@@ -9,18 +9,25 @@ def get_questions_and_answers(category, score):
     if doc.exists:
         question_data = doc.to_dict()
         question_text = question_data.get('text')
+        question_score = question_data.get('score')
+
         answers = [
             {
                 'text': answer_data['text'],
-                'correct': answer_data.get('correct', False)  # set default to False if key not found
+                'correct': answer_data.get('correct')  # set default to False if key not found
             }
             for answer_data in question_data.get('answers', {}).values()
         ]
+
         questions_answers = {
             'question': question_text,
             'a': answers[0]['text'],
             'b': answers[1]['text'],
-            'c': answers[2]['text']
+            'c': answers[2]['text'],
+            'score': question_score,
+            'ac': answers[0]['correct'],
+            'bc': answers[1]['correct'],
+            'cc': answers[2]['correct']
         }
         return questions_answers
     # Return a default value or raise an error if there is no valid question data
@@ -90,6 +97,43 @@ class GUI:
                     self.column = 0
                     self.row += 1
 
+    # def on_click(self, category, score):
+    #     new = Toplevel(self.root)
+    #     new.geometry("1660x680")
+    #
+    #     questions_answers = get_questions_and_answers(category, score)
+    #     question = questions_answers["question"]
+    #     answers = [questions_answers["a"], questions_answers["b"], questions_answers["c"]]
+    #     rignt_answer = None
+    #     if questions_answers["ac"] == True {
+    #         right_answer = [questions_answers["a"]
+    #     }
+    #     if questions_answers["bc"] == True {
+    #     right_answer =[questions_answers["b"]
+    #     }
+    #     if questions_answers["cc"] == True {
+    #     right_answer =[questions_answers["c"]
+    #     }
+    #
+    #     question_score= questions_answers["score"]
+    #
+    #     label = Label(new, text=question, width=90, height=3, font='Arial 20 bold', bd=4, bg='white')
+    #     label.pack(side="top", pady=50, padx=20, anchor="center")
+    #     self.labels.append(label)
+    #
+    #     button_frame = Frame(new)
+    #     button_frame.pack(side="top", pady=20)
+    #
+    #     for i, ans in enumerate(answers):
+    #         button = Button(button_frame, text=ans, width=40, height=2, font='Arial 15 bold', bd=4, fg='yellow',bg='purple',
+    #                         activeforeground='yellow', activebackground='white')
+    #         button.grid(row=0, column=i, padx=10)
+    #         self.buttons.append(button)
+    #
+    # def is_correct(user_answer, correct_answer):
+    #     return user_answer.lower() == correct_answer.lower()
+
+
     def on_click(self, category, score):
         new = Toplevel(self.root)
         new.geometry("1660x680")
@@ -97,6 +141,17 @@ class GUI:
         questions_answers = get_questions_and_answers(category, score)
         question = questions_answers["question"]
         answers = [questions_answers["a"], questions_answers["b"], questions_answers["c"]]
+        right_answer = None
+        if questions_answers["ac"] == True:
+            right_answer = questions_answers["a"]
+        elif questions_answers["bc"] == True:
+            right_answer = questions_answers["b"]
+        elif questions_answers["cc"] == True:
+            right_answer = questions_answers["c"]
+
+        print(right_answer)
+
+        question_score = questions_answers["score"]
 
         label = Label(new, text=question, width=90, height=3, font='Arial 20 bold', bd=4, bg='white')
         label.pack(side="top", pady=50, padx=20, anchor="center")
@@ -106,7 +161,18 @@ class GUI:
         button_frame.pack(side="top", pady=20)
 
         for i, ans in enumerate(answers):
-            button = Button(button_frame, text=ans, width=40, height=2, font='Arial 15 bold', bd=4, fg='yellow',bg='purple',
-                            activeforeground='yellow', activebackground='white')
+            button = Button(button_frame, text=ans, width=40, height=2, font='Arial 15 bold', bd=4, fg='yellow',
+                            bg='purple',
+                            activeforeground='yellow', activebackground='white',
+                            command=lambda chosen_answer=ans: self.check_answer(chosen_answer, right_answer,
+                                                                                question_score))
             button.grid(row=0, column=i, padx=10)
             self.buttons.append(button)
+
+
+    def check_answer(self, chosen_answer, right_answer, question_score):
+        if chosen_answer == right_answer:
+            # Give the user the question_score points
+            print(f"Correct! You earned {question_score} points.")
+        else:
+            print("Incorrect.")
