@@ -107,18 +107,24 @@ class View:
                 button = Button(button_frame, text=ans, width=40, height=2, font='Arial 15 bold', bd=4, fg='yellow',
                                 bg='purple',
                                 activeforeground='yellow', activebackground='white',
-                                command=lambda selected_answer=ans: self.check_answer(selected_answer, correct_answer,
-                                                                                      question_score, self.user_score))
+                                command=lambda selected_answer=ans, new=new: self.check_answer(selected_answer,
+                                                                                               correct_answer,
+                                                                                               question_score,
+                                                                                               self.user_score, new))
                 button.grid(row=0, column=i, padx=10)
                 self.buttons.append(button)
 
-    def check_answer(self, selected_answer, correct_answer, question_score, user_score):
+    def check_answer(self, selected_answer, correct_answer, question_score, user_score, new):
         if selected_answer == correct_answer:
             self.user_score += question_score
-            messagebox.showinfo("Correct answer", f"Correct! You won {question_score} points! You now have {self.user_score}!")
+            messagebox.showinfo("Correct answer",
+                                f"Correct! You won {question_score} points! You now have {self.user_score}!")
         else:
             messagebox.showerror("Incorrect answer", "Incorrect! Better luck next time!")
 
         # Save the user score in the database
         model = Model()
         model.update_user_score(self.user_id, self.user_score)
+
+        # Close the top-level window
+        new.destroy()
