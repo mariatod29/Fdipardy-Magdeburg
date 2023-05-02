@@ -1,10 +1,15 @@
-import  GUI as g
-import buzzer as b
-import multiprocessing as mp
+import tkinter as tk
+import GUI as g
+
+
+class MainApplication(tk.Frame):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.master = master
+        self.master.withdraw()# hide default window
+        self.gui = g.GUI()
 
 if __name__ == '__main__':
-
-    p2 = mp.Process(target=b.start_buzzer, args=())
-    p1 = mp.Process(target=g.start_gui, args=())
-    p2.start()
-    p1.start()
+    root = tk.Tk()
+    app = MainApplication(master=root)
+    root.mainloop()
