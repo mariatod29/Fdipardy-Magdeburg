@@ -12,6 +12,9 @@ class View:
         self.buttons = []  # define buttons attribute as empty list
         self.labels = []
 
+        # Initialize user score to 0
+        self.user_score = 0
+
         self.frame = Frame(self.root)
         self.frame.pack(fill="both", expand=True)
 
@@ -70,7 +73,7 @@ class View:
         new = Toplevel(self.root)
         new.geometry("1660x680")
 
-        questions_answers = self.controller.get_questions_and_answers(category, score)
+        questions_answers = self.controller.get_questions_and_answers(category, score, user_score=self.user_score)
         question = questions_answers["question"]
         answers = [questions_answers["a"], questions_answers["b"], questions_answers["c"]]
 
@@ -96,12 +99,13 @@ class View:
                             bg='purple',
                             activeforeground='yellow', activebackground='white',
                             command=lambda selected_answer=ans: self.check_answer(selected_answer, correct_answer,
-                                                                                question_score))
+                                                                                  question_score, self.user_score))
             button.grid(row=0, column=i, padx=10)
             self.buttons.append(button)
 
-    def check_answer(self, selected_answer, correct_answer, question_score):
+    def check_answer(self, selected_answer, correct_answer, question_score, user_score):
         if selected_answer == correct_answer:
-            messagebox.showinfo("Correct answer", f"Correct! You won {question_score} points!")
+            self.user_score += question_score
+            messagebox.showinfo("Correct answer", f"Correct! You won {question_score} points! You now have {self.user_score}!")
         else:
             messagebox.showerror("Incorrect answer", "Incorrect! Better luck next time!")
