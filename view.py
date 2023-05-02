@@ -1,39 +1,14 @@
 from tkinter import *
-from firebaseConfig import db
+from model import Model
 
 
-def get_questions_and_answers(category, score):
-    doc_ref = db.collection(f"{category}").document(f"qu{score}")
-    doc = doc_ref.get()
-
-    if doc.exists:
-        question_data = doc.to_dict()
-        question_text = question_data.get('text')
-        answers = [
-            {
-                'text': answer_data['text'],
-                'correct': answer_data.get('correct', False)  # set default to False if key not found
-            }
-            for answer_data in question_data.get('answers', {}).values()
-        ]
-        questions_answers = {
-            'question': question_text,
-            'a': answers[0]['text'],
-            'b': answers[1]['text'],
-            'c': answers[2]['text']
-        }
-        return questions_answers
-    # Return a default value or raise an error if there is no valid question data
-    return {'question': 'No question found', 'answers': []}
-
-
-class GUI:
+class View:
     def __init__(self):
         self.root = Tk()
         self.root.title("Fdipardy")
         self.root.configure(background='white')
         self.root.geometry("1660x680")
-        self.buttons = []  # define buttons attribute as empty list
+        self.buttons = []
         self.labels = []
 
         self.frame = Frame(self.root)
@@ -64,7 +39,6 @@ class GUI:
                     self.column = 0
                     self.row += 1
 
-        # center the frame within the window
         self.frame.pack_configure(anchor="center")
 
     def create_button(self, category, score):
@@ -94,7 +68,7 @@ class GUI:
         new = Toplevel(self.root)
         new.geometry("1660x680")
 
-        questions_answers = get_questions_and_answers(category, score)
+        questions_answers = Model.get_questions_and_answers(category, score)
         question = questions_answers["question"]
         answers = [questions_answers["a"], questions_answers["b"], questions_answers["c"]]
 
