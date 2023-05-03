@@ -2,6 +2,7 @@ import tkinter as tk
 from model import Model
 from view import View
 
+
 class Controller(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
@@ -38,6 +39,7 @@ class Controller(tk.Frame):
             }
             return questions_answers
         return {'question': 'No question found', 'answers': []}
+
 
 if __name__ == '__main__':
     root = tk.Tk()
