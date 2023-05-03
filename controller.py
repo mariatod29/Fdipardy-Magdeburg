@@ -9,7 +9,7 @@ class Controller(tk.Frame):
         self.master.withdraw()  # hide default window
         self.view = View(self)
 
-    def get_questions_and_answers(self, category, score, user_score):
+    def get_questions_and_answers(self, category, score, player_id, player_scores):
         doc_ref = Model.db.collection(f"{category}").document(f"qu{score}")
         doc = doc_ref.get()
 
