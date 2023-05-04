@@ -1,0 +1,31 @@
+name: Code Quality
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  code_quality:
+    name: Code Quality Check
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.10
+
+      - name: Install dependencies
+        run: pip install flake8
+
+      - name: Run Flake8
+        run: flake8 --exclude=venv
+
+      # Additional steps for other code quality tools can be added here
