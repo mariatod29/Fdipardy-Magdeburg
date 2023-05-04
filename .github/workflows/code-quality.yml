@@ -26,6 +26,7 @@ jobs:
         run: pip install flake8
 
       - name: Run Flake8
-        run: flake8 --exclude=venv
+        run: python -m flake8 --exclude=venv --config=.flake8
+
 
       # Additional steps for other code quality tools can be added here
