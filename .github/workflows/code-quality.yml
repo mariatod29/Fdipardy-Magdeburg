@@ -21,6 +21,7 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.10
+          pip: true
 
       - name: Install Flake8
         run: python -m pip install flake8
