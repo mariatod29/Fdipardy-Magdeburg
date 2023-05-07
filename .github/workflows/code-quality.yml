@@ -3,10 +3,10 @@ name: Code Quality
 on:
   push:
     branches:
-      - develop
+      - main
   pull_request:
     branches:
-      - develop
+      - main
 
 jobs:
   code_quality:
@@ -17,14 +17,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.10
-          pip: true
+      - name: Install pip
+        run: |
+          Invoke-WebRequest https://bootstrap.pypa.io/get-pip.py -OutFile get-pip.py
+          & "$env:PYTHONPATH\python.exe" get-pip.py
 
       - name: Install Flake8
-        run: python -m pip install flake8
+        run: |
+          & "$env:PYTHONPATH\python.exe" -m pip install flake8
 
       - name: Run Flake8
-        run: python -m flake8 --exclude=venv --config=.flake8
+        run: |
+          & "$env:PYTHONPATH\python.exe" -m flake8 --exclude=venv --config=.flake8
