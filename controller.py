@@ -2,6 +2,7 @@ import tkinter as tk
 from model import Model
 from view import View
 
+
 class Controller(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
@@ -9,7 +10,7 @@ class Controller(tk.Frame):
         self.master.withdraw()  # hide default window
         self.view = View(self)
 
-    def get_questions_and_answers(self, category, score, user_score):
+    def get_questions_and_answers(self, category, score, player_id, player_scores):
         doc_ref = Model.db.collection(f"{category}").document(f"qu{score}")
         doc = doc_ref.get()
 
@@ -38,6 +39,7 @@ class Controller(tk.Frame):
             }
             return questions_answers
         return {'question': 'No question found', 'answers': []}
+
 
 if __name__ == '__main__':
     root = tk.Tk()
