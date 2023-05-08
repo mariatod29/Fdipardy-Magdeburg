@@ -1,12 +1,11 @@
 from tkinter import *
 from tkinter import messagebox
-
 from model import Model
 
 
 class View:
-    def __init__(self, controller):
 
+    def __init__(self, controller):
         self.controller = controller
         self.root = Tk()
         self.root.title("Fdipardy")
@@ -14,15 +13,10 @@ class View:
         self.root.geometry("1660x680")
         self.buttons = []  # define buttons attribute as empty list
         self.labels = []
-
-        # Initialize user score to 0
-        self.user_score = 0
+        self.user_score = 0  # Initialize user score to 0
         self.user_id = "player1"  # initialize the user_id attribute
-
-
         self.frame = Frame(self.root)
         self.frame.pack(fill="both", expand=True)
-
         self.categories = ["Serien", "Nobelpreis", "Nahrung", "Schach"]
 
         for i, category in enumerate(self.categories):
@@ -31,7 +25,6 @@ class View:
             self.labels.append(label)
 
         btn_scores = [20, 40, 80, 100]
-
         self.row = 2
         self.column = 0
 
@@ -41,15 +34,13 @@ class View:
                 button.grid(row=self.row, column=self.column, pady=1, sticky="nsew")
                 self.buttons.append(button)
                 self.column += 1
-
                 max_columns = 3
 
                 if self.column > max_columns:
                     self.column = 0
                     self.row += 1
 
-        # center the frame within the window
-        self.frame.pack_configure(anchor="center")
+        self.frame.pack_configure(anchor="center")         # center the frame within the window
 
     def create_button(self, category, score):
         button = Button(self.frame, text=score + "$", width=20, height=2, font='Arial 25 bold', bd=4, fg="yellow",
@@ -68,7 +59,6 @@ class View:
                 button.grid(row=self.row, column=self.column, pady=1, sticky="nsew")
                 self.buttons.append(button)
                 self.column += 1
-
                 max_columns = 3
 
                 if self.column > max_columns:
@@ -126,5 +116,4 @@ class View:
         model = Model()
         model.update_user_score(self.user_id, self.user_score)
 
-        # Close the top-level window
-        new.destroy()
+        new.destroy()  # Close the top-level window
