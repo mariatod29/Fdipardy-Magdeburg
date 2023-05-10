@@ -142,41 +142,36 @@ class View:
             player_score = self.player_score
 
             for i, ans in enumerate(answers):
-                button = Button(button_frame, text=ans, width=50, height=2, font='Arial 16 bold', bd=4,
-                                fg="white", bg="blue", activeforeground="yellow", activebackground="purple")
-                button.pack(side="top", pady=10)
-                command = lambda: self.check_answer(button, correct_answer, question_score, button_frame,
-                                                    question_window)
-                button.config(command=command)
+                button = Button(button_frame, text=ans, width=40, height=2, font='Arial 16 bold', bd=4, bg='white',
+                                command=lambda i=i: self.check_answer(question_window, answers[i], correct_answer,
+                                                                      question_score, button_frame))
+                button.pack(side="top", pady=10, padx=10, anchor="w")
 
-            # Check for winner
-            self.current_player_index = (self.current_player_index + 1) % len(self.player_ids)
-            if self.current_player_index == 0:
-                self.disable_buttons()
-    def check_answer(self, selected_answer, correct_answer, question_score, player_score, question_window):
-        if selected_answer == correct_answer:
-            # Update the player's score
-            self.player_ids[self.current_player_index]["score"] += question_score
-            model = Model()
-            model.update_player_score(self.player_ids[self.current_player_index]["id"],
-                                      self.player_ids[self.current_player_index]["score"])
-
-            # Update the scoreboard labels
-            for i, player_id in enumerate(self.player_ids):
-                self.labels[i].configure(text=f"{player_id['id']}: {player_id['score']}")
-
-            # Show a message box with the score update
-            messagebox.showinfo("Correct answer",
-                                f"{self.player_ids[self.current_player_index]['id']} answered correctly! "
-                                f"They won {question_score} points! They now have "
-                                f"{self.player_ids[self.current_player_index]['score']}!")
+    def check_answer(self, question_window, answer, correct_answer, question_score, button_frame):
+        if answer == correct_answer:
+            self.player_scores[self.player_ids[self.current_player_index]["id"]] += question_score
+            self.labels[self.current_player_index].config(
+                text=f"{self.player_ids[self.current_player_index]['id']}: {self.player_scores[self.player_ids[self.current_player_index]['id']]}")
+            messagebox.showinfo("Correct!", f"Your answer '{answer}' is correct!")
         else:
-            # Show a message box with the wrong answer
-            messagebox.showerror("Wrong answer", "Sorry, that's not the correct answer!")
+            self.player_scores[self.player_ids[self.current_player_index]["id"]] -= question_score
+            self.labels[self.current_player_index].config(
+                text=f"{self.player_ids[self.current_player_index]['id']}: {self.player_scores[self.player_ids[self.current_player_index]['id']]}")
+            messagebox.showerror("Wrong!",
+                                 f"Your answer '{answer}' is incorrect! The correct answer is '{correct_answer}'.")
 
-        # Close the question window
         question_window.destroy()
 
-        # Switch to the next player
+        # Update the current player index and score
         self.current_player_index = (self.current_player_index + 1) % len(self.player_ids)
-        self.add_buttons()
+        self.player_score = self.player_scores[self.player_ids[self.current_player_index]["id"]]
+
+        # Disable buttons for other players and enable buttons for the current player
+        for button in self.buttons:
+            if self.current_player_index == 0:
+                button.config(state='normal')
+            else:
+                button.config(state='disabled')
+
+        # Check if the game is over and disable all buttons
+        self.disable_buttons()
