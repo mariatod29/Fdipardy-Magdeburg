@@ -2,7 +2,8 @@
 
 ## Built With
 Technologies used in the project:
-- Python using Tkinter
+- Python 3.10 - backend
+- Python Tkinter- for the GUI
 - Firestore - noSQL Database
    - more information about Firestore you can find here: https://www.youtube.com/watch?v=v_hR4K4auoQ&list=PLl-K7zZEsYLluG5MCVEzXAQ7ACZBCuZgZ&ab_channel=Firebase
 
