@@ -1,11 +1,14 @@
 from tkinter import *
 from tkinter import messagebox
 from model import Model
+import tkinter as tk
 
 
 class View:
     def __init__(self, controller):
         self.controller = controller
+        self.player_ids = None
+        self.player_scores = {}
         self.root = Tk()
         self.root.title("Fdipardy")
         self.root.configure(background='white')
@@ -60,6 +63,15 @@ class View:
         # center the frame within the window
         self.frame.pack_configure(anchor="center")
 
+    def disable_buttons(self):
+        winner = self.controller.check_winner(self.player_scores)
+        if winner is not None:
+            winner_name = self.player_ids[winner]["id"]
+            messagebox.showinfo("Winner", f"Congratulations {winner_name}! You won!")
+
+        for button in self.buttons:
+            button.config(state=tk.DISABLED)
+
     def create_button(self, category, score):
         button = Button(self.frame, text=score + "$", width=20, height=2, font='Arial 25 bold', bd=4, fg="yellow",
                         bg="purple", activeforeground="yellow", activebackground="white")
@@ -67,9 +79,9 @@ class View:
         command = lambda: self.on_click(button, category, score)
         button.config(command=command)
         if self.current_player_index == 0:
-            button.config(state='normal')
+            button.config(state=NORMAL)
         else:
-            button.config(state='disabled')
+            button.config(state=DISABLED)
 
         return button
 
@@ -130,17 +142,17 @@ class View:
             player_score = self.player_score
 
             for i, ans in enumerate(answers):
-                button = Button(button_frame, text=ans, width=40, height=2, font='Arial 15 bold', bd=4, fg='yellow',
-                                bg='purple',
-                                activeforeground='yellow', activebackground='white',
-                                command=lambda selected_answer=ans, question_window=question_window: self.check_answer(
-                                    selected_answer,
-                                    correct_answer,
-                                    question_score,
-                                    player_score, question_window))
-                button.grid(row=0, column=i, padx=10)
-                self.buttons.append(button)
+                button = Button(button_frame, text=ans, width=50, height=2, font='Arial 16 bold', bd=4,
+                                fg="white", bg="blue", activeforeground="yellow", activebackground="purple")
+                button.pack(side="top", pady=10)
+                command = lambda: self.check_answer(button, correct_answer, question_score, button_frame,
+                                                    question_window)
+                button.config(command=command)
 
+            # Check for winner
+            self.current_player_index = (self.current_player_index + 1) % len(self.player_ids)
+            if self.current_player_index == 0:
+                self.disable_buttons()
     def check_answer(self, selected_answer, correct_answer, question_score, player_score, question_window):
         if selected_answer == correct_answer:
             # Update the player's score

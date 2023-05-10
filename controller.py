@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 from model import Model
 from view import View
 
@@ -39,6 +40,13 @@ class Controller(tk.Frame):
             }
             return questions_answers
         return {'question': 'No question found', 'answers': []}
+
+    def check_winner(self, player_scores):
+        # find the player with the highest score
+        winner_id = max(player_scores, key=player_scores.get)
+        winner_score = player_scores[winner_id]
+        # create a message box with the winner's information
+        messagebox.showinfo("Game Over", f"Player {winner_id} is the winner with a score of {winner_score}!")
 
 
 if __name__ == '__main__':
